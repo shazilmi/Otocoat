@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Student</title>
+		<link rel = "stylesheet" type = "text/css" href = "/static/css/mainn.css">
+	</head>
+	<body>
+		{% for message in get_flashed_messages() %}
+		<h2>{{message}}</h2>
+		{% endfor %}
+		<div>
+			<h2>Currently stored student details are:</h2>
+			{% for i in thelist %}
+			<p>{{i}}</p>
+			{% endfor %}
+		</div>
+		<div>
+			<p><br><br><br>To insert more student details:<br><br></p>
+			<form method = "post">
+				<div class = "TextBoxdiv">
+					<input type = "text" name = "uid" placeholder = "UID">
+				</div>
+				<div class = "TextBoxdiv">
+					<input type = "text" name = "name" placeholder = "Name">
+				</div>
+				<div class = "TextBoxdiv">
+					<input list = "classes" name = "classy">
+					<datalist id = "classes">
+						{% for i in alist %}
+						<option value = "{{i}}">
+						{% endfor %}
+					</datalist>
+				</div>
+				<div>
+				<input type = "submit" value = "SUBMIT" class="signupbt" name = "Submit">
+				</div>
+			</form>
+		</div>
+		<div>
+			<p>Go back to <a href = "/dash">dashboard</a></p>
+		</div>
+	</body>
+</html>

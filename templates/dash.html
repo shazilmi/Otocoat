@@ -1,0 +1,38 @@
+<html>
+
+<head>
+	<title>
+		MINI | Dashboard
+	</title>
+	<link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+	{% for message in get_flashed_messages() %}
+	<h1>
+		{{message}}
+	</h1>
+	{% endfor %}
+	<div class=nav>
+		<div class=margin>
+			<h1>*NAME*</h1>
+			<div class=link>
+				<a href="/index" class=nl>Home</a>
+				<a href="/about" class=nl>About</a>
+				<a href="/login" class=nl>Log In</a>
+				<a href="/signup" class=nl>Sign Up</a>
+				<a href="/contact" class=nl>Contact</a>
+			</div>
+		</div>
+	</div>
+	<div class=margin>
+		<h5>Welcome To Dashboard</h5>
+		<div class=k>
+			<li>Input Class Details Here <a href="/class"><button>Class</button></a></li><br><br>
+			<li>Input Student Details Here <a href="/student"><button>Student</button></a></li><br><br>
+			<li>Input Mark Details Here <a href="/marks"><button>Mark</button></a></li><br><br>
+			<li>Input Subject Details Here <a href="/subject"><button>Subject</button></a></li><br><br>
+		</div>
+</body>
+
+</html>

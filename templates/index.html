@@ -1,0 +1,108 @@
+<html>
+
+<head>
+	<title>
+		MINI | Home
+	</title>
+	<link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+	{% for message in get_flashed_messages() %}
+	<h1>
+		{{message}}
+	</h1>
+	{% endfor %}
+	<div class=nav>
+		<div class=margin>
+			<h1>*NAME*</h1>
+			<div class=link>
+				<a href="/index" class=nl>Home</a>
+				<a href="/about" class=nl>About</a>
+				<a href="/login" class=nl>Log In</a>
+				<a href="/signup" class=nl>Sign Up</a>
+				<a href="/contact" class=nl>Contact</a>
+			</div>
+		</div>
+	</div>
+	<div class=slider>
+		<img src="cover.jpeg">
+		<div class=slidtxt>
+			<div class=margin>
+				<h2>*heading*</h2>
+				text text text text text text text text text text text text text text text text<br> text text text text
+				text
+				text text text text text text text text text text text<br> texttext text texttext text texttext text
+				texttext
+				text <br>
+				<a href="/about"><button>LEARN MORE</button>
+			</div>
+		</div>
+	</div>
+	<div class=margin>
+		<div class=b>
+			<h3>AN OVERVIEW OF OUR PROJECT</h3>
+			<font color=black>
+				<p> text text text text text text text text text text text text text text text text text text text text
+					text
+					text text text text text text text text text text text text text text text text text text text text
+					text text
+					text text text text text text text text text text text text text text text text text text text text
+					text text
+					text text text text text text text text text text text text text text text texttext text text text
+					text text
+					text text text text text text text text text text text text text text text text text text text text
+					text text
+					text text text text text text text text text text text text text text</p>
+			</font>
+			<a href="/about"><button>READ MORE</button></a>
+		</div>
+		<div class=c>
+			<h3>LOG IN</h3>
+			<input type=email placeholder=Username>
+			<input type=password placeholder=Password>
+			<a href="#">
+				<font color=blue>forget password???
+			</a></font>
+			<a href="/dash"><button>Log In</button></a>
+		</div>
+		<div class=e>
+			<div style=overflow:hidden;>
+				<img src=02.jpg>
+			</div>
+			<center>
+				<h4>*HEADING*</h4>
+				Text text text
+		</div>
+		<div class=e>
+			<div style=overflow:hidden;>
+				<img src=3.jpg>
+			</div>
+			<center>
+				<h4>*HEADING*</h4>
+				Text text text
+		</div>
+		<div class=e>
+			<div style=overflow:hidden;>
+				<img src=4.jpg>
+			</div>
+			<center>
+				<h4>*HEADING*</h4>
+				Text text text
+		</div>
+		<div class=e>
+			<div style=overflow:hidden;>
+				<img src=5.jpg>
+			</div>
+			<center>
+				<h4>*HEADING*</h4>
+				Text text text
+		</div>
+	</div>
+	<div class=f>
+		<center>COPYRIGHT&copy;
+			right recived from RSET
+	</div>
+</body>
+
+</html>

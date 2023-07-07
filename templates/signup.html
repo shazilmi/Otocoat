@@ -1,0 +1,46 @@
+<html>
+
+<head>
+	<title>
+		MINI | signup
+	</title>
+	<link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+	{% for message in get_flashed_messages() %}
+	<h1>
+		{{message}}
+	</h1>
+	{% endfor %}
+	<div class=nav>
+		<div class=margin>
+			<h1>*NAME*</h1>
+			<div class=link>
+				<a href="/index" class=nl>Home</a>
+				<a href="/about" class=nl>About</a>
+				<a href="/login" class=nl>Log In</a>
+				<a href="/signup" class=nl>Sign Up</a>
+				<a href="/contact" class=nl>Contact</a>
+			</div>
+		</div>
+	</div>
+	<div class=margin>
+		<h5>Sign Up</h5>
+		<center>
+			<div class=j>
+				<h3></h3>
+				<form method="post">
+					<input type="email" placeholder="Username" name="user">
+					<input type="password" placeholder="Password" name="pass1">
+					<input type="password" placeholder="Confirm password" name="pass2">
+					<input type="submit" value="Signup" name="done">
+					<a href="/login"><button>Log In</button></a>
+					<br>
+				</form>
+			</div>
+		</center>
+	</div>
+</body>
+
+</html>

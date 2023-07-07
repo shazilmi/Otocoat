@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Class</title>
+		<link rel = "stylesheet" type = "text/css" href = "/static/css/mainn.css">
+	</head>
+	<body>
+		{% for message in get_flashed_messages() %}
+		<h1>{{message}}</h1>
+		{% endfor %}
+		<div>
+			<p><br><br><br>Choose class, subject and evaluation method:<br><br></p>
+			<form method = "post">
+				<div>
+					<input list = "subject" name = "subject" placeholder = "Subject">
+					<datalist id = "subject">
+						{% for i in subjectlist %}
+						<option value = "{{i[0]}}">
+						{% endfor %}
+					</datalist>
+				</div>
+				<div>
+					<input list = "classes" name = "classes" placeholder = "Class">
+					<datalist id = "classes">
+						{% for i in subjectlist %}
+						<option value = "{{i[1]}}">
+						{% endfor %}
+					</datalist>
+				</div>
+				<div>
+					<input list = "evaluation" name = "evaluation" placeholder = "Evaluation method">
+					<datalist id = "evaluation">
+						{% for i in evaluationlist %}
+						<option value = "{{i}}">
+						{% endfor %}
+					</datalist>
+				</div>
+				<div>
+					<input type = "submit" value = "SUBMIT" class="signupbt" name = "Submit">
+				</div>
+			</form>
+		</div>
+		<div>
+			<p>Go back to <a href = "/dash">dashboard</a></p>
+		</div>
+	</body>
+</html>
