@@ -9,12 +9,17 @@ from models.common import db
 from models.users import Users
 from models.classes import Classes
 from models.students import Students
-from models.assignment_1 import Assignment_1
 from models.subjects import Subjects
+from models.assignment_1 import Assignment_1
 from models.assignment_2 import Assignment_2
 from models.endsem import Endsem
 from models.internals_1 import Internals_1
 from models.internals_2 import Internals_2
+from models.assignment_1_details import Assignment_1_details
+from models.assignment_2_details import Assignment_2_details
+from models.internals_1_details import Internals_1_details
+from models.internals_2_details import Internals_2_details
+from models.endsem_details import Endsem_details
 
 # Create the flask app.
 app = Flask(__name__)
@@ -56,12 +61,6 @@ app.register_blueprint(dashs)
 from routes.student import students
 app.register_blueprint(students)
 
-# Adding blueprint for evaluation page.
-from routes.evaluation import evaluations
-app.register_blueprint(evaluations)
-
-# Adding blueprint for marks page.
-
 # Adding blueprint for about page.
 from routes.about import abouts
 app.register_blueprint(abouts)
@@ -73,6 +72,22 @@ app.register_blueprint(contacts)
 # Adding blueprint for subjects page.
 from routes.subject import subjects
 app.register_blueprint(subjects)
+
+# Adding blueprint for evaluation method choice page.
+from routes.evaluation import evaluations
+app.register_blueprint(evaluations)
+
+# Adding blueprint for assignment details page.
+from routes.details_assignment import dassign
+app.register_blueprint(dassign)
+
+# Adding blueprint for assignment marks input page.
+from routes.marks_assignment import massign
+app.register_blueprint(massign)
+
+# Adding blueprint for assignment results page.
+from routes.result_assignment import rassign
+app.register_blueprint(rassign)
 
 # Redirect to homepage from the root URL.
 @app.route('/', methods = ['GET', 'POST'])

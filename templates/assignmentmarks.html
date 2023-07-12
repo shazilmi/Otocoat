@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assignment marks</title>
+    <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='evaluation.css') }}">-->
+</head>
+<body>
+    <h1>Assignment marks</h1>
+    <form method="POST">
+        <table>
+            <tr>
+				<th>Student uid</th>
+                <th>Total score</th>
+            </tr>
+            {% for i in studentlist %}
+                <tr>
+                    <td>{{ i }}</td>
+                    <td><input type="number" name="mark_{{ i }}" min = "0" max = "{{score}}" step = "0.5" \
+						required></td>
+                </tr>
+            {% endfor %}
+        </table>
+        
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

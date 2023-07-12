@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<head>
+	<title>Assignment results</title>
+</head>
+<body>
+	<div>
+		<p>Percentage of students who passed the threshold: {{percent}}</p>
+	</div>
+	<div>
+		{% for i in colist %}
+		<p>Score attained for CO{{i}} : {{score}}</p>
+		{% endfor %}
+	</div>
+	<div>
+		<a href = "/dash">Go back to dashboard</a>
+	</div>
+</body>

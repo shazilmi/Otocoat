@@ -21,12 +21,10 @@
 					<input type = "text" name = "name" placeholder = "Subject name">
 				</div>
 				<div>
-					<input list = "classes" name = "theclass">
-					<datalist id = "classes">
+					<select name = "theclass">
 						{% for i in alist %}
-						<option value = "{{i}}">
+						<option value = "{{i}}">{{i}}</option>
 						{% endfor %}
-					</datalist>
 				</div>
 				<div>
 					<input type = "submit" value = "SUBMIT" class="signupbt" name = "Submit">

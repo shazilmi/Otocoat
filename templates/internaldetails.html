@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Internals details</title>
+    <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='evaluation.css') }}">-->
+</head>
+<body>
+    <h1>Internals details</h1>
+    <form action="/submit" method="POST">
+        
+        <h2>Internals details</h2>
+        <table>
+            <tr>
+                <th>Question</th>
+                <th>Mark</th>
+                <th>Difficulty</th>
+                <th>CO Map</th>
+            </tr>
+            {% for i in range(1, 16) %}
+                <tr>
+                    <td>Q{{ i }}</td>
+                    <td><input type="number" name="internaldetails-mark-{{ i }}" required></td>
+                    <td><input type="number" name="internaldetails-difficulty-{{ i }}" required></td>
+                    <td><input type="number" name="internaldetails-co-map-{{ i }}" required></td>
+                </tr>
+            {% endfor %}
+        </table>
+        
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

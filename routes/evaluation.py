@@ -2,6 +2,8 @@ from flask import render_template, flash, request, Blueprint, session, redirect,
 from models.common import db
 from models.classes import Classes
 from models.subjects import Subjects
+from models.assignment_1_details import Assignment_1_details
+from models.assignment_2_details import Assignment_2_details
 
 evaluations = Blueprint('marks', __name__)
 
@@ -9,19 +11,14 @@ evaluations = Blueprint('marks', __name__)
 def evaluation():
 	arows = db.session.execute(db.select(Subjects.subject, Subjects.theclass)).all()
 	evallist = ['Assignment 1', 'Assignment 2', 'First internals', 'Second internals', 'Endsem']
+	brows = db.session.execute(db.select(Classes.theclass)).all()
+	crows = []
+	for i in brows:
+		crows.append(i[0])
 	if request.method == "GET":
 		return render_template('marks.html', subjectlist = arows, \
-			evaluationlist = evallist)
+			evaluationlist = evallist, classlist = crows)
 	if request.method == "POST":
-		if not request.form['subject']:
-			flash("Subject is mandatory!")
-			return render_template("marks.html", evaluationlist = evallist, subjectlist = arows)
-		if not request.form['classes']:
-			flash("Class is mandatory!")
-			return render_template("marks.html", evaluationlist = evallist, subjectlist = arows)
-		if not request.form['evaluation']:
-			flash("Evaluation method is mandatory!")
-			return render_template("marks.html", evaluationlist = evallist, subjectlist = arows)
 		thesubject = request.form['subject']
 		theclass = request.form['classes']
 		theevaluation = request.form['evaluation']
@@ -29,19 +26,6 @@ def evaluation():
 		thesubjectlist = []
 		for i in asubjectlist:
 			thesubjectlist.append(i[0])
-		if thesubject not in thesubjectlist:
-			flash("Invalid subject entered!")
-			return render_template("marks.html", evaluationlist = evallist, subjectlist = arows)
-		aclasslist = db.session.execute(db.select(Subjects.theclass)).all()
-		theclasslist = []
-		for i in aclasslist:
-			theclasslist.append(i[0])
-		if theclass not in theclasslist:
-			flash("Invalid class entered!")
-			return render_template("marks.html", evaluationlist = evallist, subjectlist = arows)
-		if theevaluation not in evallist:
-			flash("Invalid evaluation method entered!")
-			return render_template("marks.html", evaluationlist = evallist, subjectlist = arows)
 		thecheck = 0
 		for i in arows:
 			if i[0] == thesubject and i[1] == theclass:
@@ -49,12 +33,31 @@ def evaluation():
 		if thecheck == 0:
 			flash("The given subject is not taught at the given class. \
 				Kindly check the input or go to the subject page.")
-			return render_template("marks.html", evaluationlist = evallist, subjectlist = arows)
+			return render_template("marks.html", evaluationlist = evallist, subjectlist = arows, \
+				classlist = crows)
 		session['theclass'] = theclass
 		session['subject'] = thesubject
 		session['evaluation'] = theevaluation
-		if theevaluation == 'Assignment 1' or theevaluation == 'Assignment 2':
-			return redirect(url_for('details_assignment'))
+		if theevaluation == 'Assignment 1':
+			thecheck = db.session.execute(db.select(\
+				Assignment_1_details.theclass, Assignment_1_details.subject).filter_by(\
+					theclass = theclass, subject = thesubject)).all()
+			if len(thecheck) == 0:
+				return redirect('details_assignment')
+			else:
+				sc = db.session.execute(db.select(Assignment_1_details.score).filter_by(\
+					theclass = theclass, subject = thesubject)).all()
+				thescore = sc[0][0]
+				session['score'] = thescore
+				return redirect('marks_assignment')
+		if theevaluation == 'Assignment 2':
+			thecheck = db.session.execute(db.select(\
+				Assignment_2_details.theclass, Assignment_2_details.subject).filter_by(\
+					theclass = theclass, subject = thesubject)).all()
+			if len(thecheck) == 0:
+				return redirect('details_assignment')
+			else:
+				return redirect('marks_assignment')
 		if theevaluation == 'First internals' or theevaluation == 'Second internals':
-			return redirect(url_for('details_internals'))
-		return redirect(url_for('details_endsem'))
+			return redirect('details_internals')
+		return redirect('endsem_details')

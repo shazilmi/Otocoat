@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Class</title>
-		<link rel = "stylesheet" type = "text/css" href = "/static/css/style.css">
+		<!--<link rel = "stylesheet" type = "text/css" href = "/static/css/style.css">-->
 	</head>
 	<body>
 		{% for message in get_flashed_messages() %}
@@ -10,30 +10,30 @@
 		{% endfor %}
 		<div>
 			<p><br><br><br>Choose class, subject and evaluation method:<br><br></p>
-			<form method = "post">
+			<form method = "post" autocomplete="off">
 				<div>
-					<input list = "subject" name = "subject" placeholder = "Subject">
-					<datalist id = "subject">
+					<label for = "another thing">Subject: </label>
+					<select name = "subject" id = "another thing" placeholder = "Subject" required>
 						{% for i in subjectlist %}
-						<option value = "{{i[0]}}">
+						<option value = "{{i[0]}}">{{i[0]}}</option>
 						{% endfor %}
-					</datalist>
+					</select>
 				</div>
 				<div>
-					<input list = "classes" name = "classes" placeholder = "Class">
-					<datalist id = "classes">
-						{% for i in subjectlist %}
-						<option value = "{{i[1]}}">
+					<label for = "something">Class: </label>
+					<select name = "classes" id = "something" required>
+						{% for j in classlist %}
+						<option value = "{{j}}">{{j}}</option>
 						{% endfor %}
-					</datalist>
+					</select>
 				</div>
 				<div>
-					<input list = "evaluation" name = "evaluation" placeholder = "Evaluation method">
-					<datalist id = "evaluation">
+					<label for = "nothing">Evaluation method: </label>
+					<select name = "evaluation" id = "nothing" placeholder = "Evaluation method" required>
 						{% for i in evaluationlist %}
-						<option value = "{{i}}">
+						<option value = "{{i}}">{{i}}</option>
 						{% endfor %}
-					</datalist>
+					</select>
 				</div>
 				<div>
 					<input type = "submit" value = "SUBMIT" class="signupbt" name = "Submit">
