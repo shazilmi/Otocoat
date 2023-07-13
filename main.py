@@ -89,6 +89,18 @@ app.register_blueprint(massign)
 from routes.result_assignment import rassign
 app.register_blueprint(rassign)
 
+# Adding blueprint for internals details page.
+from routes.details_internals import dint
+app.register_blueprint(dint)
+
+# Adding blueprint for internals marks page.
+from routes.marks_internals import mint
+app.register_blueprint(mint)
+
+# Adding blueprint for internals results page.
+from routes.result_internals import rint
+app.register_blueprint(rint)
+
 # Redirect to homepage from the root URL.
 @app.route('/', methods = ['GET', 'POST'])
 def hello():

@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: "Comic Sans MS", sans-serif;
-    background: #f0f0f0;
+    background: black;
   }
   
   .nav {
@@ -21,7 +21,7 @@ body {
   h1, h2, h3, h4, h5 {
     font-weight: lighter;
     font-size: 25px;
-    color: white;
+    color: black;
     padding: 0;
     margin: 0;
   }
@@ -38,7 +38,7 @@ body {
   
   .nl {
     float: left;
-    color: white;
+    color: black;
     padding: 25px 20px;
   }
   
@@ -48,7 +48,7 @@ body {
   
   a, img, button {
     transition: 0.5s all ease;
-    color: white;
+    color: black;
     font-size: 15px;
     font-family: "Comic Sans MS", sans-serif;
   }
@@ -71,7 +71,7 @@ body {
     position: relative;
     background: rgba(0, 0, 0, 0.5);
     font-size: 15px;
-    color: white;
+    color: black;
   }
   
   h2 {
@@ -94,8 +94,8 @@ body {
   .a, .b, .c, .d, .e {
     width: 227px;
     height: 230px;
-    background: white;
-    box-shadow: 2px 2px 5px #ccc;
+    background: black;
+    box-shadow: 2px 2px 5px black;
     padding: 20px;
     margin: 20px 10px 10px;
     float: left;

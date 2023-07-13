@@ -4,6 +4,9 @@ from models.classes import Classes
 from models.subjects import Subjects
 from models.assignment_1_details import Assignment_1_details
 from models.assignment_2_details import Assignment_2_details
+from models.internals_1_details import Internals_1_details
+from models.internals_2_details import Internals_2_details
+from models.endsem_details import Endsem_details
 
 evaluations = Blueprint('marks', __name__)
 
@@ -38,26 +41,8 @@ def evaluation():
 		session['theclass'] = theclass
 		session['subject'] = thesubject
 		session['evaluation'] = theevaluation
-		if theevaluation == 'Assignment 1':
-			thecheck = db.session.execute(db.select(\
-				Assignment_1_details.theclass, Assignment_1_details.subject).filter_by(\
-					theclass = theclass, subject = thesubject)).all()
-			if len(thecheck) == 0:
-				return redirect('details_assignment')
-			else:
-				sc = db.session.execute(db.select(Assignment_1_details.score).filter_by(\
-					theclass = theclass, subject = thesubject)).all()
-				thescore = sc[0][0]
-				session['score'] = thescore
-				return redirect('marks_assignment')
-		if theevaluation == 'Assignment 2':
-			thecheck = db.session.execute(db.select(\
-				Assignment_2_details.theclass, Assignment_2_details.subject).filter_by(\
-					theclass = theclass, subject = thesubject)).all()
-			if len(thecheck) == 0:
-				return redirect('details_assignment')
-			else:
-				return redirect('marks_assignment')
+		if theevaluation == 'Assignment 1' or theevaluation == 'Assignment 2':
+			return redirect('details_assignment')
 		if theevaluation == 'First internals' or theevaluation == 'Second internals':
 			return redirect('details_internals')
-		return redirect('endsem_details')
+		return redirect('marks_endsem')

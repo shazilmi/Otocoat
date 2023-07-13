@@ -29,10 +29,16 @@ def mark_input():
 				total = request.form[thename]
 				crows = db.session.execute(db.select(Assignment_1).filter_by(\
 					uid = i, subject = a_subject)).first()
+				if crows is None:
+					anobject = Assignment_1(uid = i, subject = a_subject, marks = total)
+					db.session.add(anobject)
+					db.session.commit()
+					return redirect('result_assignment')
 				if len(crows) == 0:
 					anobject = Assignment_1(uid = i, subject = a_subject, marks = total)
 					db.session.add(anobject)
 					db.session.commit()
+					return redirect('result_assignment')
 				else:
 					crows[0].marks = total
 					db.session.commit()
@@ -43,12 +49,17 @@ def mark_input():
 				total = request.form[thename]
 				crows = db.session.execute(db.select(Assignment_2).filter_by(\
 					uid = i, subject = a_subject)).first()
+				if crows is None:
+					anobject = Assignment_2(uid = i, subject = a_subject, marks = total)
+					db.session.add(anobject)
+					db.session.commit()
+					return redirect('result_assignment')
 				if len(crows) == 0:
 					anobject = Assignment_2(uid = i, subject = a_subject, marks = total)
 					db.session.add(anobject)
 					db.session.commit()
+					return redirect('result_assignment')
 				else:
 					crows[0].marks = total
 					db.session.commit()
-			return redirect('result_assignment')
 			return redirect('result_assignment')
