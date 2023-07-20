@@ -24,6 +24,7 @@ def details_internals():
 			coname = 'co' + str(i)
 			dlist.append(request.form[dname])
 			colist.append(request.form[coname])
+		print('Difficulty list:', dlist, 'CO list:', colist, sep = '\n')
 		if evaluation == 'First internals':
 			thecheck = db.session.execute(db.select(Internals_1_details)).first()
 			if thecheck is None:
@@ -66,6 +67,7 @@ def details_internals():
 				flash('Internals details added successfully!')
 				return redirect('marks_internals')
 			else:
+				print('The check:', thecheck, sep = '\n')
 				thecheck[0].d1 = dlist[0]
 				thecheck[0].co1 = colist[0]
 				thecheck[0].d2 = dlist[1]
@@ -96,6 +98,7 @@ def details_internals():
 				thecheck[0].co14 = colist[13]
 				thecheck[0].d15 = dlist[14]
 				thecheck[0].co15 = colist[14]
+				db.session.commit()
 				return redirect('marks_internals')
 		if evaluation == 'Second internals':
 			int_2_details = Internals_2_details(
