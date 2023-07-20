@@ -21,7 +21,7 @@ from models.internals_1_details import Internals_1_details
 from models.internals_2_details import Internals_2_details
 from models.endsem_details import Endsem_details
 
-# Create the flask app.
+# Create the flask app.1
 app = Flask(__name__)
 
 # Configure the database.
