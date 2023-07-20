@@ -1,15 +1,31 @@
-<!DOCTYPE html>
+
 <html>
 	<head>
 		<title>Class</title>
-		<!--<link rel = "stylesheet" type = "text/css" href = "/static/css/style.css">-->
+		<link rel = "stylesheet" type = "text/css" href = "/static/css/style.css">
 	</head>
 	<body>
-		{% for message in get_flashed_messages() %}
-		<h1>{{message}}</h1>
-		{% endfor %}
-		<div>
-			<p><br><br><br>Choose class, subject and evaluation method:<br><br></p>
+		<div class=nav>
+			<div class=margin>
+				<h1>*NAME*</h1>
+				<div class=link>
+					<a href="/index" class=nl>Home</a>
+					<a href="/about" class=nl>About</a>
+					<a href="/login" class=nl>Log In</a>
+					<a href="/signup" class=nl>Sign Up</a>
+					<a href="/contact" class=nl>Contact</a>
+				</div>
+			</div>
+		</div>
+		<div class=margin>
+
+		
+		
+			<h5>Choose class, subject and evaluation method:</h5><br><br>
+			<center>
+				<div class=m>
+					<h3></h3>
+
 			<form method = "post" autocomplete="off">
 				<div>
 					<label for = "another thing">Subject: </label>
@@ -18,7 +34,7 @@
 						<option value = "{{i[0]}}">{{i[0]}}</option>
 						{% endfor %}
 					</select>
-				</div>
+				</div><br>
 				<div>
 					<label for = "something">Class: </label>
 					<select name = "classes" id = "something" required>
@@ -26,7 +42,7 @@
 						<option value = "{{j}}">{{j}}</option>
 						{% endfor %}
 					</select>
-				</div>
+				</div><br>
 				<div>
 					<label for = "nothing">Evaluation method: </label>
 					<select name = "evaluation" id = "nothing" placeholder = "Evaluation method" required>
@@ -35,13 +51,13 @@
 						{% endfor %}
 					</select>
 				</div>
-				<div>
-					<input type = "submit" value = "SUBMIT" class="signupbt" name = "Submit">
-				</div>
+				<button>Submit</button>
 			</form>
-		</div>
-		<div>
-			<p>Go back to <a href = "/dash">dashboard</a></p>
+		
+			<p>Go back to <a href = "/dash"><button>dashboard</button></a></p>
+			{% for message in get_flashed_messages() %}
+		<h6>{{message}}</h6>
+		{% endfor %}
 		</div>
 	</body>
 </html>

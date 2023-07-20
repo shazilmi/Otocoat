@@ -8,11 +8,7 @@
 </head>
 
 <body>
-	{% for message in get_flashed_messages() %}
-	<h1>
-		{{message}}
-	</h1>
-	{% endfor %}
+	
 	<div class=nav>
 		<div class=margin>
 			<h1>*NAME*</h1>
@@ -33,10 +29,15 @@
 				<form method="post">
 					<input type="email" placeholder="Username" name="user" autocomplete = "off">
 					<input type="password" placeholder="Password" name="user_pass">
-					<input type="submit" value="Login" name="submit">
+					<button>login</button>
 					<br>
 				</form>
 				<a href="/signup"><button>Sign Up</button></a>
+				{% for message in get_flashed_messages() %}
+	<h6>
+		{{message}}
+	</h6>
+	{% endfor %}
 			</div>
 		</center>
 	</div>

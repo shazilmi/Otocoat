@@ -1,38 +1,60 @@
-<!DOCTYPE html>
+
 <html>
 	<head>
 		<title>Subject</title>
 		<link rel = "stylesheet" type = "text/css" href = "/static/css/style.css">
 	</head>
 	<body>
-		{% for message in get_flashed_messages() %}
-		<h1>{{message}}</h1>
-		{% endfor %}
-		<div>
-			<h2>Currently stored subjects are:<br><br></h2>
+		<div class=nav>
+			<div class=margin>
+				<h1>*NAME*</h1>
+				<div class=link>
+					<a href="/index" class=nl>Home</a>
+					<a href="/about" class=nl>About</a>
+					<a href="/login" class=nl>Log In</a>
+					<a href="/signup" class=nl>Sign Up</a>
+					<a href="/contact" class=nl>Contact</a>
+				</div>
+			</div>
+		</div>
+		<div class=margin>
+
+		
+		
+		
+		
+			<h5>Currently stored subjects are:</h5>
 			{% for i in subjectlist %}
 			<p>{{i[0]}}, {{i[1]}}</p>
 			{% endfor %}
-		</div>
-		<div>
-			<p><br><br><br>To insert more class details:<br><br></p>
+		
+		
+			<h5>To insert more class details:</h5>
+
+			<center>
+				<div class=j>
+					<h3></h3>
+
 			<form method = "post" autocomplete = "off">
 				<div class = "TextBoxdiv">
 					<input type = "text" name = "name" placeholder = "Subject name">
 				</div>
-				<div>
-					<select name = "theclass">
+				<div class = "TextBoxdiv">
+					<input list = "classes" name = "classy" placeholder="Class name">
+					<datalist id = "classes">
 						{% for i in alist %}
-						<option value = "{{i}}">{{i}}</option>
+						<option value = "{{i}}">
 						{% endfor %}
+					</datalist>
 				</div>
-				<div>
-					<input type = "submit" value = "SUBMIT" class="signupbt" name = "Submit">
-				</div>
+				<button>Submit</button>
 			</form>
+		
+			<p>Go back to <a href = "/dash"><button>dashboard</button></a></p>
+			{% for message in get_flashed_messages() %}
+		<h6>{{message}}</h6>
+		{% endfor %}
 		</div>
-		<div>
-			<p>Go back to <a href = "/dash">dashboard</a></p>
-		</div>
+
 	</body>
 </html>

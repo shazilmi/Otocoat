@@ -1,21 +1,36 @@
-<!DOCTYPE html>
+
 <html>
 	<head>
 		<title>Student</title>
 		<link rel = "stylesheet" type = "text/css" href = "/static/css/style.css">
 	</head>
 	<body>
-		{% for message in get_flashed_messages() %}
-		<h2>{{message}}</h2>
-		{% endfor %}
-		<div>
-			<h2>Currently stored student details are:</h2>
+		<div class=nav>
+			<div class=margin>
+				<h1>*NAME*</h1>
+				<div class=link>
+					<a href="/index" class=nl>Home</a>
+					<a href="/about" class=nl>About</a>
+					<a href="/login" class=nl>Log In</a>
+					<a href="/signup" class=nl>Sign Up</a>
+					<a href="/contact" class=nl>Contact</a>
+				</div>
+			</div>
+		</div>
+		<div class=margin>
+
+		
+		
+			<h5>Currently stored student details are:</h5>
 			{% for i in thelist %}
 			<p>{{i}}</p>
 			{% endfor %}
-		</div>
-		<div>
-			<p><br><br><br>To insert more student details:<br><br></p>
+		
+		
+			<h5>To insert more student details:</h5>
+			<center>
+				<div class=j>
+					<h3></h3>
 			<form method = "post" autocomplete="off">
 				<div class = "TextBoxdiv">
 					<input type = "text" name = "uid" placeholder = "UID">
@@ -31,13 +46,15 @@
 						{% endfor %}
 					</datalist>
 				</div>
-				<div>
-				<input type = "submit" value = "SUBMIT" class="signupbt" name = "Submit">
-				</div>
+				
+				<button>Submit</button>
 			</form>
-		</div>
-		<div>
-			<p>Go back to <a href = "/dash">dashboard</a></p>
-		</div>
+
+		
+		
+			<p>Go back to <a href = "/dash"><button>Dashboard</button></a></p>
+		{% for message in get_flashed_messages() %}
+		<h6>{{message}}</h6>
+		{% endfor %}
 	</body>
 </html>

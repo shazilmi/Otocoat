@@ -15,9 +15,9 @@ height:75;
 width:1150;
 margin:auto;
 }
-h1,h2,h3,h4,h5{
+h1,h2,h3,h4,h5,h6{
 font:lighter 25px "comic sans ms";
-color:black;
+color:white;
 padding:0;
 margin:0;
 }
@@ -31,7 +31,7 @@ float:right;
 }
 .nl{
 float:left;
-color:black;
+color:white;
 padding:25 20;
 }
 .nl:hover{
@@ -39,7 +39,7 @@ background:#1284f9;
 }
 a,img,button{
 transition:0.5s all ease;
-color:black;
+color:white;
 font-size:15;
 font-family:"comic sans ms";
 }
@@ -78,7 +78,7 @@ cursor:pointer;
 .a{
 width:200;
 height:265;
-background:black;
+background:white;
 box-shadow:2px 2px 5px #ccc;
 padding:20;
 margin:20 10 10;
@@ -92,7 +92,7 @@ margin:-20 -20 20;
 .b{
 width:820;
 height:265;
-background:black;
+background:white;
 box-shadow:2px 2px 5px #ccc;
 padding:20;
 margin:20 10 10;
@@ -101,7 +101,7 @@ float:left;
 .c{
 width:200;
 height:265;
-background:black;
+background:white;
 box-shadow:2px 2px 5px #ccc;
 padding:20;
 margin:20 10 10;
@@ -170,7 +170,7 @@ text-align:justify;
 }
 .j{
 width:200;
-height:295;
+height:300;
 background:white;
 box-shadow:2px 2px 5px #ccc;
 padding:20;
@@ -194,3 +194,29 @@ padding:20;
 margin:20 10 10;
 float:left;
 }
+
+h6{
+    font-size:15;
+    float:center;
+    color:red;
+    padding:6 0 0;
+    }
+
+.m{
+        width:270;
+        height:350;
+        background:white;
+        box-shadow:2px 2px 5px #ccc;
+        padding:20;
+        margin:20 10 10;
+        float:center;
+        }
+.n{
+            width:400;
+            height:650;
+            background:white;
+            box-shadow:2px 2px 5px #ccc;
+            padding:20;
+            margin:20 10 10;
+            float:center;
+            }        

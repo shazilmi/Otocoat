@@ -1,12 +1,29 @@
-<!DOCTYPE html>
+
 <html>
 <head>
   <title>Assignment Details</title>
+  <link rel = "stylesheet" type = "text/css" href = "/static/css/style2.css">
 </head>
 <body>
+  <div class=nav>
+    <div class=margin>
+      <h1>*NAME*</h1>
+      <div class=link>
+        <a href="/index" class=nl>Home</a>
+        <a href="/about" class=nl>About</a>
+        <a href="/login" class=nl>Log In</a>
+        <a href="/signup" class=nl>Sign Up</a>
+        <a href="/contact" class=nl>Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class=margin>
 
-  <h1>Assignment Details</h1>
-
+  <h5>Assignment Details</h5>
+  
+<center>
+			<div class=n>
+				<h3></h3>
   <form method="POST">
 
     <label for="difficulty">Difficulty:</label>
@@ -30,7 +47,7 @@
     <label for="co5">CO5: (Enter 1 if mapped, zero otherwise)</label>
     <input type="number" id="co5" name="co5" min = "0" max = "1" required><br>
 
-    <input type="submit" value="Submit">
+    <button>Submit</button>
   </form>
 
 </body>
