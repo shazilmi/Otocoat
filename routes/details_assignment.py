@@ -52,6 +52,7 @@ def details_assignment():
 				thecheck[0].co3 = a_co3
 				thecheck[0].co4 = a_co4
 				thecheck[0].co5 = a_co5
+				db.session.commit()
 				return redirect('marks_assignment')
 		if evaluation == 'Assignment 2':
 			assgn_2_details = Assignment_2_details(
