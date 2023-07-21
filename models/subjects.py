@@ -13,3 +13,4 @@ class Subjects(db.Model):
 	deta3 = db.relationship("Internals_2_details", lazy = True)
 	deta4 = db.relationship("Assignment_2_details", lazy = True)
 	deta5 = db.relationship("Endsem_details", lazy = True)
+	deta6 = db.relationship("Feedback", lazy = True)
