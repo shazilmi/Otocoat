@@ -20,6 +20,7 @@ from models.assignment_2_details import Assignment_2_details
 from models.internals_1_details import Internals_1_details
 from models.internals_2_details import Internals_2_details
 from models.endsem_details import Endsem_details
+from models.feedback import Feedback
 
 # Create the flask app.1
 app = Flask(__name__)
@@ -100,6 +101,10 @@ app.register_blueprint(mint)
 # Adding blueprint for internals results page.
 from routes.result_internals import rint
 app.register_blueprint(rint)
+
+# Adding blueprint for feedback page.
+from routes.details_feedback import feedb
+app.register_blueprint(feedb)
 
 # Redirect to homepage from the root URL.
 @app.route('/', methods = ['GET', 'POST'])

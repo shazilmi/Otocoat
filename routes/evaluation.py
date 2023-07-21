@@ -13,7 +13,7 @@ evaluations = Blueprint('marks', __name__)
 @evaluations.route('/marks', methods = ["POST", "GET"])
 def evaluation():
 	arows = db.session.execute(db.select(Subjects.subject, Subjects.theclass)).all()
-	evallist = ['Assignment 1', 'Assignment 2', 'First internals', 'Second internals', 'Endsem']
+	evallist = ['Assignment 1', 'Assignment 2', 'First internals', 'Second internals', 'Course Feedback', 'Endsem']
 	brows = db.session.execute(db.select(Classes.theclass)).all()
 	crows = []
 	for i in brows:
@@ -45,4 +45,6 @@ def evaluation():
 			return redirect('details_assignment')
 		if theevaluation == 'First internals' or theevaluation == 'Second internals':
 			return redirect('details_internals')
+		if theevaluation == 'Course Feedback':
+			return redirect('feedback')
 		return redirect('marks_endsem')
