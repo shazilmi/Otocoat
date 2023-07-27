@@ -7,10 +7,12 @@ from models.assignment_1 import Assignment_1
 from models.assignment_2 import Assignment_2
 from models.assignment_1_details import Assignment_1_details
 from models.assignment_2_details import Assignment_2_details
+from flask_login import login_required
 
 massign = Blueprint('marks_assignment', __name__)
 
 @massign.route('/marks_assignment', methods = ["GET", "POST"])
+@login_required
 def mark_input():
 	a_class = session['theclass']
 	a_subject = session['subject']

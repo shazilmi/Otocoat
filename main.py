@@ -1,12 +1,14 @@
 # Importing the necessary packages.
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
 # Import the SQLAlchemy extension.
 from models.common import db
 
 # Import the created models and 
 from models.users import Users
+from models.auser import Auser
 from models.classes import Classes
 from models.students import Students
 from models.subjects import Subjects
@@ -105,6 +107,46 @@ app.register_blueprint(rint)
 # Adding blueprint for feedback page.
 from routes.details_feedback import feedb
 app.register_blueprint(feedb)
+
+# Adding blueprint for logout.
+from routes.logout import logouts
+app.register_blueprint(logouts)
+
+# Setting up login.
+lm = LoginManager()
+lm.init_app(app)
+
+# Setting up how to load a user from a request and from its session.
+@lm.user_loader
+def user_loader(email):
+	theusers = db.session.execute(db.select(Users.email)).all()
+	users = []
+	for i in theusers:
+		users.append(i[0])
+	if email not in users:
+		return
+	user = Auser()
+	user.id = email
+	return user
+
+@lm.request_loader
+def request_loader(request):
+	theusers = db.session.execute(db.select(Users.email)).all()
+	users = []
+	email = request.form.get('email')
+	for i in theusers:
+		users.append(i[0])
+	if email not in users:
+		return
+	user = Auser()
+	user.id = email
+	return user
+
+# Handling unauthorized requests.
+@lm.unauthorized_handler
+def uh():
+	flash('The page you tried to access requires you to login.')
+	return redirect('login')
 
 # Redirect to homepage from the root URL.
 @app.route('/', methods = ['GET', 'POST'])

@@ -7,10 +7,12 @@ from models.assignment_2_details import Assignment_2_details
 from models.internals_1_details import Internals_1_details
 from models.internals_2_details import Internals_2_details
 from models.endsem_details import Endsem_details
+from flask_login import login_required
 
 evaluations = Blueprint('marks', __name__)
 
 @evaluations.route('/marks', methods = ["POST", "GET"])
+@login_required
 def evaluation():
 	arows = db.session.execute(db.select(Subjects.subject, Subjects.theclass)).all()
 	evallist = ['Assignment 1', 'Assignment 2', 'First internals', 'Second internals', 'Course Feedback', 'Endsem']

@@ -6,10 +6,12 @@ from models.internals_1 import Internals_1
 from models.internals_2 import Internals_2
 from models.internals_1_details import Internals_1_details
 from models.internals_2_details import Internals_2_details
+from flask_login import login_required
 
 dint = Blueprint('details_internals', __name__)
 
 @dint.route('/details_internals', methods = ["GET", "POST"])
+@login_required
 def details_internals():
 	if request.method == "GET":
 		return render_template('internaldetails.html')

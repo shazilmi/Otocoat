@@ -1,11 +1,12 @@
 from flask import Blueprint, request, render_template, flash
 from models.common import db
+from flask_login import login_required
 
 dashs = Blueprint('dash', __name__)
 
 @dashs.route("/dash", methods = ["POST", "GET"])
+@login_required	
 def dashboard():
-	
 	if request.method == "GET":
 		return render_template("dash.html")
 	if request.method == "POST":

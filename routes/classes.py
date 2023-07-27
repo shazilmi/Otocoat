@@ -1,10 +1,12 @@
 from flask import render_template, flash, request, Blueprint
 from models.common import db
 from models.classes import Classes
+from flask_login import login_required
 
 classs = Blueprint('class', __name__)
 
 @classs.route("/class", methods = ["GET", "POST"])
+@login_required
 def classes():
 	if request.method == "GET":
 		rows = db.session.execute(db.select(Classes.theclass)).all()

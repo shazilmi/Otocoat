@@ -7,10 +7,12 @@ from models.internals_1 import Internals_1
 from models.internals_2 import Internals_2
 from models.internals_1_details import Internals_1_details
 from models.internals_2_details import Internals_2_details
+from flask_login import login_required
 
 rint = Blueprint('result_internals', __name__)
 
 @rint.route('/result_internals', methods = ["GET", "POST"])
+@login_required
 def result_internals():
 	a_class = session['theclass']
 	a_subject = session['subject']

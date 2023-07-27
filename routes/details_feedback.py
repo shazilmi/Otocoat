@@ -3,10 +3,12 @@ from models.common import db
 from models.classes import Classes
 from models.subjects import Subjects
 from models.feedback import Feedback
+from flask_login import login_required
 
 feedb = Blueprint('feedback', __name__)
 
 @feedb.route('/feedback', methods=["GET", "POST"])
+@login_required
 def feed():
     if request.method == "GET":
         return render_template('feedback1.html')
