@@ -56,9 +56,13 @@ app.register_blueprint(logins)
 from routes.classes import classs
 app.register_blueprint(classs)
 
-# Adding blueprint for dashboard.
+# Adding blueprint for faculty dashboard.
 from routes.dash import dashs
 app.register_blueprint(dashs)
+
+# Adding blueprint for admin dashboard.
+from routes.admindash import adashs
+app.register_blueprint(adashs)
 
 # Adding blueprint for students page.
 from routes.student import students

@@ -23,7 +23,7 @@ def signup():
 			return render_template('signup.html')
 		rows = db.session.execute(db.select(Users.password).filter_by(email = username)).all()
 		if len(rows) == 0:
-			user = Users(email = username, password = pass1)
+			user = Users(email = username, password = pass1, admin = 0)
 			db.session.add(user)
 			db.session.commit()
 			flash('Signup successful! Kindly login with your credentials.')
