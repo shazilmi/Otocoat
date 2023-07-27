@@ -2,31 +2,35 @@
 <html>
 <head>
     <title>End Sem</title>
-    <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='evaluation.css') }}">-->
+    <link rel = "stylesheet" type = "text/css" href = "/static/css/style2.css">
 </head>
 <body>
     <h1>End Sem</h1>
-    <form action="/submit" method="POST">
-        <label for="theclass">Class:</label>
-        <input type="text" id="theclass" name="theclass" required>
-        
-        <label for="subject">Subject:</label>
-        <input type="text" id="subject" name="subject" required>
+    <div class=nav>
+        <div class=margin>
+            <h1>Otocoat</h1>
+            <div class=link>
+                <a href="/index" class=nl>Home</a>
+                <a href="/about" class=nl>About</a>
+                <a href="/contact" class=nl>Contact</a>
+                <a href = "/logout" class = nl>Logout</a>
+            </div>
+        </div>
+    </div>
+    <form method="POST">
         
         <h2>End Sem</h2>
         <table>
             <tr>
                 <th>Question</th>
-                <th>Mark</th>
                 <th>Difficulty</th>
                 <th>CO Map</th>
             </tr>
             {% for i in range(1, 21) %}
                 <tr>
                     <td>Q{{ i }}</td>
-                    <td><input type="number" name="EndSem-mark-{{ i }}" required></td>
-                    <td><input type="number" name="EndSem-difficulty-{{ i }}" required></td>
-                    <td><input type="number" name="EndSem-co-map-{{ i }}" required></td>
+                    <td><input type="number" name="d{{ i }}" min = "1" max = "3" required></td>
+                    <td><input type="number" name="co{{ i }}" min = "1" max = "5" required></td>
                 </tr>
             {% endfor %}
         </table>

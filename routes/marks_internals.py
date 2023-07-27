@@ -29,11 +29,11 @@ def mark_input():
 				qlist = []
 				for j in range(1, 16):
 					qname = str(i) + '_q' + str(j)
-					try:
-						theq = request.form[qname]
+					theq = request.form[qname]
+					if theq == '':
+						theq = -1
 						qlist.append(theq)
-					except KeyError:
-						theq = None
+					else:
 						qlist.append(theq)
 				crows = db.session.execute(db.select(Internals_1).filter_by(\
 					uid = i, subject = a_subject)).first()
@@ -79,11 +79,11 @@ def mark_input():
 				qlist = []
 				for j in range(1, 16):
 					qname = str(i) + '_q' + str(j)
-					try:
-						theq = request.form[qname]
+					theq = request.form[qname]
+					if theq == '':
+						theq = -1
 						qlist.append(theq)
-					except KeyError:
-						theq = None
+					else:
 						qlist.append(theq)
 				crows = db.session.execute(db.select(Internals_2).filter_by(\
 					uid = i, subject = a_subject)).first()

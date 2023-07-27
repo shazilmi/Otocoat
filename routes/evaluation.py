@@ -49,4 +49,4 @@ def evaluation():
 			return redirect('details_internals')
 		if theevaluation == 'Course Feedback':
 			return redirect('feedback')
-		return redirect('marks_endsem')
+		return redirect('details_endsem')

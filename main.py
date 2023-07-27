@@ -104,6 +104,18 @@ app.register_blueprint(mint)
 from routes.result_internals import rint
 app.register_blueprint(rint)
 
+# Adding blueprint for endsem details page.
+from routes.details_endsem import dend
+app.register_blueprint(dend)
+
+# Adding blueprint for endsem marks page.
+from routes.marks_endsem import mend
+app.register_blueprint(mend)
+
+# Adding blueprint for endsem results page.
+from routes.result_endsem import rend
+app.register_blueprint(rend)
+
 # Adding blueprint for feedback page.
 from routes.details_feedback import feedb
 app.register_blueprint(feedb)
