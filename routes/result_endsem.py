@@ -5,6 +5,7 @@ from models.subjects import Subjects
 from models.students import Students
 from models.endsem import Endsem
 from models.endsem_details import Endsem_details
+from models.overall import Overall
 from flask_login import login_required
 
 rend = Blueprint('result_endsem', __name__)
@@ -91,5 +92,18 @@ def result_endsem():
 			coscorelist.append(0)
 		else:
 			coscorelist.append(comap[k] / conum[k])
-	#print('Co score for each co:', coscorelist, sep = '\n')
+	theover = db.session.execute(db.select(Overall).filter_by(\
+		theclass = a_class, subject = a_subject, evaluation = session['evaluation'])).first()
+	if theover is None:
+		anover = Overall(theclass = a_class, subject = a_subject, evaluation = session['evaluation'], \
+			co1 = coscorelist[0], co2 = coscorelist[1], co3 = coscorelist[2], co4 = coscorelist[3], co5 = coscorelist[4])
+		db.session.add(anover)
+		db.session.commit()
+	else:
+		theover[0].co1 = coscorelist[0]
+		theover[0].co2 = coscorelist[1]
+		theover[0].co3 = coscorelist[2]
+		theover[0].co4 = coscorelist[3]
+		theover[0].co5 = coscorelist[4]
+		db.session.commit()
 	return render_template('endsemresults.html', colist = coscorelist)

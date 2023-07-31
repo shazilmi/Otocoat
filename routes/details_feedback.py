@@ -3,6 +3,7 @@ from models.common import db
 from models.classes import Classes
 from models.subjects import Subjects
 from models.feedback import Feedback
+from models.overall import Overall
 from flask_login import login_required
 
 feedb = Blueprint('feedback', __name__)
@@ -23,6 +24,20 @@ def feed():
         if not (0 <= a_co1 <= 3 and 0 <= a_co2 <= 3 and 0 <= a_co3 <= 3 and 0 <= a_co4 <= 3 and 0 <= a_co5 <= 3):
             flash('Invalid input! Please enter values between 0 and 3.')
             return redirect('feedback')
+        theover = db.session.execute(db.select(Overall).filter_by(\
+            theclass = a_class, subject = a_subject, evaluation = session['evaluation'])).first()
+        if theover is None:
+            anover = Overall(theclass = a_class, subject = a_subject, evaluation = session['evaluation'], \
+                co1 = a_co1, co2 = a_co2, co3 = a_co3, co4 = a_co4, co5 = a_co5)
+            db.session.add(anover)
+            db.session.commit()
+        else:
+            theover[0].co1 = a_co1
+            theover[0].co2 = a_co2
+            theover[0].co3 = a_co3
+            theover[0].co4 = a_co4
+            theover[0].co5 = a_co5
+            db.session.commit()
         thecheck = db.session.execute(db.select(Feedback).filter_by(theclass=a_class, subject=a_subject)).first()
         if thecheck is None:
             feedback_details = Feedback(

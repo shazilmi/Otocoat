@@ -22,6 +22,7 @@ from models.assignment_2_details import Assignment_2_details
 from models.internals_1_details import Internals_1_details
 from models.internals_2_details import Internals_2_details
 from models.endsem_details import Endsem_details
+from models.overall import Overall
 from models.feedback import Feedback
 
 # Create the flask app.1
@@ -123,6 +124,10 @@ app.register_blueprint(rend)
 # Adding blueprint for feedback page.
 from routes.details_feedback import feedb
 app.register_blueprint(feedb)
+
+# Adding blueprint for overall page.
+from routes.overall import over
+app.register_blueprint(over)
 
 # Adding blueprint for logout.
 from routes.logout import logouts
