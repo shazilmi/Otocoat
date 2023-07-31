@@ -7,10 +7,12 @@ from models.internals_1 import Internals_1
 from models.internals_2 import Internals_2
 from models.internals_1_details import Internals_1_details
 from models.internals_2_details import Internals_2_details
+from flask_login import login_required
 
 mint = Blueprint('marks_internals', __name__)
 
 @mint.route('/marks_internals', methods = ["GET", "POST"])
+@login_required
 def mark_input():
 	a_class = session['theclass']
 	a_subject = session['subject']
@@ -27,11 +29,11 @@ def mark_input():
 				qlist = []
 				for j in range(1, 16):
 					qname = str(i) + '_q' + str(j)
-					try:
-						theq = request.form[qname]
+					theq = request.form[qname]
+					if theq == '':
+						theq = -1
 						qlist.append(theq)
-					except KeyError:
-						theq = None
+					else:
 						qlist.append(theq)
 				crows = db.session.execute(db.select(Internals_1).filter_by(\
 					uid = i, subject = a_subject)).first()
@@ -77,11 +79,11 @@ def mark_input():
 				qlist = []
 				for j in range(1, 16):
 					qname = str(i) + '_q' + str(j)
-					try:
-						theq = request.form[qname]
+					theq = request.form[qname]
+					if theq == '':
+						theq = -1
 						qlist.append(theq)
-					except KeyError:
-						theq = None
+					else:
 						qlist.append(theq)
 				crows = db.session.execute(db.select(Internals_2).filter_by(\
 					uid = i, subject = a_subject)).first()

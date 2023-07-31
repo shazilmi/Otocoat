@@ -3,11 +3,13 @@ from models.common import db
 from models.students import Students
 from models.classes import Classes
 from models.subjects import Subjects
+from flask_login import login_required
 
 students = Blueprint('student', __name__)
 
 
 @students.route("/student", methods = ["GET", "POST"])
+@login_required
 def student():
 	if request.method == "GET":
 		alist = db.session.execute(db.select(Students.uid)).all()

@@ -1,6 +1,8 @@
-from flask import Blueprint, request, render_template, flash, redirect
+from flask import Blueprint, request, render_template, flash, redirect, session
 from models.common import db
 from models.users import Users
+from models.auser import Auser
+from flask_login import login_user
 
 logins = Blueprint('login', __name__)
 
@@ -23,7 +25,16 @@ def login():
 			print("No results returned.")
 			return render_template('login.html')
 		if rows[0][0] == password:
-			return redirect("dash")
+			auser = Auser()
+			auser.id = username
+			login_user(auser)
+			isadmin = db.session.execute(db.select(Users.admin).filter_by(email = username)).first()
+			if isadmin[0] == 0:
+				session['admin'] = 0
+				return redirect("dash")
+			else:
+				session['admin'] = 1
+				return redirect("adash")
 		flash("Invalid login credentials!")
 		print("Wrong password.")
 		print(rows[0][0])

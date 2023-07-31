@@ -7,10 +7,12 @@ from models.assignment_1 import Assignment_1
 from models.assignment_2 import Assignment_2
 from models.assignment_1_details import Assignment_1_details
 from models.assignment_2_details import Assignment_2_details
+from flask_login import login_required
 
 rassign = Blueprint('result_assignment', __name__)
 
 @rassign.route('/result_assignment', methods = ["GET", "POST"])
+@login_required
 def thefunc():
 	a_class = session['theclass']
 	a_subject = session['subject']

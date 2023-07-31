@@ -7,16 +7,18 @@ from models.internals_1 import Internals_1
 from models.internals_2 import Internals_2
 from models.internals_1_details import Internals_1_details
 from models.internals_2_details import Internals_2_details
+from flask_login import login_required
 
 rint = Blueprint('result_internals', __name__)
 
 @rint.route('/result_internals', methods = ["GET", "POST"])
+@login_required
 def result_internals():
 	a_class = session['theclass']
 	a_subject = session['subject']
 	evaluation = session['evaluation']
 	arows = db.session.execute(db.select(Students.uid).filter_by(theclass = a_class)).all()
-	print('studentlist:', arows, sep = '\n')
+	# print('studentlist:', arows, sep = '\n')
 	studentlist = []
 	for i in arows:
 		studentlist.append(i[0])
@@ -28,7 +30,7 @@ def result_internals():
 						Internals_1_details.d12, Internals_1_details.d13, Internals_1_details.d14, \
 							Internals_1_details.d15).filter_by(\
 								theclass = a_class, subject = a_subject)).first()
-		print('Difficulty list:', diff, sep = '\n')
+		# print('Difficulty list:', diff, sep = '\n')
 		co = db.session.execute(db.select(Internals_1_details.co1, Internals_1_details.co2, \
 			Internals_1_details.co3, Internals_1_details.co4, Internals_1_details.co5, \
 				Internals_1_details.co6, Internals_1_details.co7, Internals_1_details.co8, \
@@ -36,7 +38,7 @@ def result_internals():
 						Internals_1_details.co12, Internals_1_details.co13, Internals_1_details.co14, \
 							Internals_1_details.co15).filter_by(\
 								theclass = a_class, subject = a_subject)).first()
-		print('Co mapped list:', co, sep = '\n')
+		# print('Co mapped list:', co, sep = '\n')
 		colist = []
 		for i in range(15):
 			if i < 5:
@@ -49,7 +51,7 @@ def result_internals():
 				threshold = 60
 			else:
 				threshold = 50
-			print('Threshold:', threshold, sep = '\n')
+			# print('Threshold:', threshold, sep = '\n')
 			students = 0
 			passed = 0
 			for j in studentlist:
@@ -58,13 +60,13 @@ def result_internals():
 						Internals_1.q9, Internals_1.q10, Internals_1.q11, Internals_1.q12, \
 							Internals_1.q13, Internals_1.q14, Internals_1.q15).filter_by(\
 								uid = j, subject = a_subject)).first()
-				if query[i] is None:
-					pass
+				if query[i] == -1:
+					students += 1
 				else:
 					students += 1
 					if (query[i]/totalmarks) * 100 > threshold:
 						passed += 1
-				print('Passed, number of students:', passed, students, sep = '\n')
+				#print('Passed, number of students:', passed, students, sep = '\n')
 			if students > 0:
 				coscore = (passed / students) * 100
 				if coscore >= 70:
@@ -75,7 +77,7 @@ def result_internals():
 					colist.append(1)
 			else:
 				colist.append(1)
-		print('Co score for each question:', colist, sep = '\n')
+		#print('Co score for each question:', colist, sep = '\n')
 		comap = {1:0, 2:0, 3:0, 4:0, 5:0}
 		conum = {1:0, 2:0, 3:0, 4:0, 5:0}
 		coscorelist = []
@@ -84,13 +86,13 @@ def result_internals():
 				if co[i] == j:
 					comap[j] += colist[i]
 					conum[j] += 1
-		print('Total score for each co, number of questions for each co:', comap, conum, sep = '\n')
+		#print('Total score for each co, number of questions for each co:', comap, conum, sep = '\n')
 		for k in range(1, 6):
 			if conum[k] == 0:
 				coscorelist.append(0)
 			else:
 				coscorelist.append(comap[k] / conum[k])
-		print('Co score for each co:', coscorelist, sep = '\n')
+		#print('Co score for each co:', coscorelist, sep = '\n')
 		return render_template('internalresults.html', colist = coscorelist)
 	if evaluation == 'Second internals':
 		diff = db.session.execute(db.select(Internals_2_details.d1, Internals_2_details.d2, \
@@ -127,8 +129,8 @@ def result_internals():
 						Internals_2.q9, Internals_2.q10, Internals_2.q11, Internals_2.q12, \
 							Internals_2.q13, Internals_2.q14, Internals_2.q15).filter_by(\
 								uid = j, subject = a_subject)).first()
-				if query[i] is None:
-					pass
+				if query[i] == -1:
+					students += 1
 				else:
 					students += 1
 					if (query[i]/totalmarks) * 100 > threshold:
@@ -156,5 +158,5 @@ def result_internals():
 				coscorelist.append(0)
 			else:
 				coscorelist.append(comap[k] / conum[k])
-		print(coscorelist)
+		#print(coscorelist)
 		return render_template('internalresults.html', colist = coscorelist)

@@ -1,0 +1,49 @@
+
+<html>
+<head>
+    <title>Endsem marks</title>
+    <link rel = "stylesheet" type = "text/css" href = "/static/css/style2.css">
+</head>
+<body>
+
+    <div class=nav>
+        <div class=margin>
+            <h1>Otocoat</h1>
+            <div class=link>
+                <a href="/index" class=nl>Home</a>
+                <a href="/about" class=nl>About</a>
+                <a href="/login" class=nl>Log In</a>
+                <a href="/signup" class=nl>Sign Up</a>
+                <a href="/contact" class=nl>Contact</a>
+                <a href = "/logout" class = nl>Logout</a>
+            </div>
+        </div>
+    </div>
+    <div class=margin>
+
+    <h5>Endsem marks</h5>
+    <form method="POST">
+        <table>
+            <tr>
+				<th>Student uid</th>
+                {% for i in range(1, 21) %}
+				<th>Question {{i}}</th>
+				{% endfor %}
+            </tr>
+            {% for i in studentlist %}
+                <tr>
+                    <td>{{ i }}</td>
+					{% for j in range(1, 6) %}
+                    <td><input type="number" name="{{i}}_q{{ j }}" min = "0" max = "3" step = "0.5"></td>
+					{% endfor %}
+					{% for j in range(6, 21) %}
+                    <td><input type="number" name="{{i}}_q{{ j }}" min = "0" max = "7" step = "0.5"></td>
+					{% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+        
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
