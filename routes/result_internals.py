@@ -7,6 +7,7 @@ from models.internals_1 import Internals_1
 from models.internals_2 import Internals_2
 from models.internals_1_details import Internals_1_details
 from models.internals_2_details import Internals_2_details
+from models.overall import Overall
 from flask_login import login_required
 
 rint = Blueprint('result_internals', __name__)
@@ -93,6 +94,20 @@ def result_internals():
 			else:
 				coscorelist.append(comap[k] / conum[k])
 		#print('Co score for each co:', coscorelist, sep = '\n')
+		theover = db.session.execute(db.select(Overall).filter_by(\
+			theclass = a_class, subject = a_subject, evaluation = evaluation)).first()
+		if theover is None:
+			anover = Overall(theclass = a_class, subject = a_subject, evaluation = evaluation, \
+				co1 = coscorelist[0], co2 = coscorelist[1], co3 = coscorelist[2], co4 = coscorelist[3], co5 = coscorelist[4])
+			db.session.add(anover)
+			db.session.commit()
+		else:
+			theover[0].co1 = coscorelist[0]
+			theover[0].co2 = coscorelist[1]
+			theover[0].co3 = coscorelist[2]
+			theover[0].co4 = coscorelist[3]
+			theover[0].co5 = coscorelist[4]
+			db.session.commit()
 		return render_template('internalresults.html', colist = coscorelist)
 	if evaluation == 'Second internals':
 		diff = db.session.execute(db.select(Internals_2_details.d1, Internals_2_details.d2, \
@@ -159,4 +174,18 @@ def result_internals():
 			else:
 				coscorelist.append(comap[k] / conum[k])
 		#print(coscorelist)
+		theover = db.session.execute(db.select(Overall).filter_by(\
+			theclass = a_class, subject = a_subject, evaluation = evaluation)).first()
+		if theover is None:
+			anover = Overall(theclass = a_class, subject = a_subject, evaluation = evaluation, \
+				co1 = coscorelist[0], co2 = coscorelist[1], co3 = coscorelist[2], co4 = coscorelist[3], co5 = coscorelist[4])
+			db.session.add(anover)
+			db.session.commit()
+		else:
+			theover[0].co1 = coscorelist[0]
+			theover[0].co2 = coscorelist[1]
+			theover[0].co3 = coscorelist[2]
+			theover[0].co4 = coscorelist[3]
+			theover[0].co5 = coscorelist[4]
+			db.session.commit()
 		return render_template('internalresults.html', colist = coscorelist)

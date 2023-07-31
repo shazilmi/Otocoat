@@ -1,4 +1,3 @@
-
 <html>
 	<head>
 		<title>Evaluation choice</title>
@@ -20,7 +19,7 @@
 
 		
 		
-			<h5>Choose class, subject and evaluation method:</h5><br><br>
+			<h5>Choose class and subject:</h5><br><br>
 			<center>
 				<div class=m>
 					<h3></h3>
@@ -42,14 +41,6 @@
 						{% endfor %}
 					</select>
 				</div><br>
-				<div>
-					<label for = "nothing">Evaluation method: </label>
-					<select name = "evaluation" id = "nothing" required>
-						{% for i in evaluationlist %}
-						<option value = "{{i}}">{{i}}</option>
-						{% endfor %}
-					</select>
-				</div>
 				<button>Submit</button>
 			</form>
 		

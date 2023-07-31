@@ -7,6 +7,7 @@ from models.assignment_1 import Assignment_1
 from models.assignment_2 import Assignment_2
 from models.assignment_1_details import Assignment_1_details
 from models.assignment_2_details import Assignment_2_details
+from models.overall import Overall
 from flask_login import login_required
 
 rassign = Blueprint('result_assignment', __name__)
@@ -66,6 +67,26 @@ def thefunc():
 			co += 1
 			if i == 1:
 				colist.append(co)
+		blist = []
+		for i in range(len(alist[0])):
+			if alist[0][i] == 1:
+				blist.append(co_score)
+			else:
+				blist.append(0)
+		theover = db.session.execute(db.select(Overall).filter_by(\
+			theclass = a_class, subject = a_subject, evaluation = evaluation)).first()
+		if theover is None:
+			anover = Overall(theclass = a_class, subject = a_subject, evaluation = evaluation, \
+				co1 = blist[0], co2 = blist[1], co3 = blist[2], co4 = blist[3], co5 = blist[4])
+			db.session.add(anover)
+			db.session.commit()
+		else:
+			theover[0].co1 = blist[0]
+			theover[0].co2 = blist[1]
+			theover[0].co3 = blist[2]
+			theover[0].co4 = blist[3]
+			theover[0].co5 = blist[4]
+			db.session.commit()
 		if request.method == "GET":
 			return render_template("assignmentresults.html", percent = percentage, colist = colist, \
 				score = co_score)
@@ -114,6 +135,26 @@ def thefunc():
 			co += 1
 			if i == 1:
 				colist.append(co)
+		blist = []
+		for i in range(len(alist[0])):
+			if alist[0][i] == 1:
+				blist.append(co_score)
+			else:
+				blist.append(0)
+		theover = db.session.execute(db.select(Overall).filter_by(\
+			theclass = a_class, subject = a_subject, evaluation = evaluation)).first()
+		if theover is None:
+			anover = Overall(theclass = a_class, subject = a_subject, evaluation = evaluation, \
+				co1 = blist[0], co2 = blist[1], co3 = blist[2], co4 = blist[3], co5 = blist[4])
+			db.session.add(anover)
+			db.session.commit()
+		else:
+			theover[0].co1 = blist[0]
+			theover[0].co2 = blist[1]
+			theover[0].co3 = blist[2]
+			theover[0].co4 = blist[3]
+			theover[0].co5 = blist[4]
+			db.session.commit()
 		if request.method == "GET":
 			return render_template("assignmentresults.html", percent = percentage, colist = colist, \
 				score = co_score)
