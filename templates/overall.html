@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Internals results</title>
+</head>
+<body>
+	<div>
+		<p>Scores obtained for each CO were:</p>
+		<ul>
+		{% for i in range(5) %}
+			<li>CO{{i+1}} : {{colist[i]}}</li>
+		{% endfor %}
+		</ul>
+	</div>
+	<div>
+		<a href = "/dash">Go back to dashboard</a>
+	</div>
+</body>
+</html>
