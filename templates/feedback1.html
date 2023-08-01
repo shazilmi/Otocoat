@@ -1,10 +1,25 @@
-<!DOCTYPE html>
+<html>
 <html>
 <head>
     <title>Feedback Form</title>
+    <link rel = "stylesheet" type = "text/css" href = "/static/css/style2.css">
 </head>
 <body>
-    <h1>Course Feedback Form</h1>
+    <div class=nav>
+        <div class=margin>
+            <h1>Otocoat</h1>
+            <div class=link>
+                <a href="/index" class=nl>Home</a>
+                <a href="/about" class=nl>About</a>
+                <a href="/login" class=nl>Log In</a>
+                <a href="/signup" class=nl>Sign Up</a>
+                <a href="/contact" class=nl>Contact</a>
+                <a href = "/logout" class = nl>Logout</a>
+            </div>
+        </div>
+    </div>
+    <div class=margin>
+    <h5>Course Feedback Form</h5>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul>
@@ -21,6 +36,7 @@
             <option value = "2">2</option>
             <option value = "3">3</option>
         </select>
+        <br> <br>
         
         <label for="co2">CO2:</label>
         <select id="co2" name="co2" required><br>
@@ -28,13 +44,15 @@
             <option value = "2">2</option>
             <option value = "3">3</option>
         </select>
-        
+        <br> <br>
+
         <label for="co3">CO3:</label>
         <select id="co3" name="co3" required><br>
             <option value = "1">1</option>
             <option value = "2">2</option>
             <option value = "3">3</option>
         </select>
+        <br> <br>
         
         <label for="co4">CO4:</label>
         <select id="co4" name="co4" required><br>
@@ -42,6 +60,7 @@
             <option value = "2">2</option>
             <option value = "3">3</option>
         </select>
+        <br> <br>
         
         <label for="co5">CO5:</label>
         <select id="co5" name="co5" required><br>
@@ -49,8 +68,8 @@
             <option value = "2">2</option>
             <option value = "3">3</option>
         </select>
-        
-        <input type="submit" value="Submit Feedback">
+        <br> <br>
+        <button>Submit</button>
     </form>
 </body>
 </html>

@@ -8,11 +8,7 @@
 </head>
 
 <body>
-	{% for message in get_flashed_messages() %}
-	<h1>
-		{{message}}
-	</h1>
-	{% endfor %}
+	
 	<div class=nav>
 		<div class=margin>
 			<h1>Otocoat</h1>
@@ -32,6 +28,11 @@
 			<li>Input Mark Details Here <a href="/marks"><button>Mark</button></a></li><br><br>
 			<li>View CO scores Here <a href = "/overall"><button>CO Scores</button></a></li><br><br>
 		</div>
+		{% for message in get_flashed_messages() %}
+	<h6>
+		{{message}}
+	</h6>
+	{% endfor %}
 </body>
 
 </html>
