@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+
 <html>
 <head>
 	<title>Internals results</title>
+	<link rel = "stylesheet" type = "text/css" href = "/static/css/style2.css">
 </head>
 <body>
 	<div class=nav>
@@ -15,16 +16,15 @@
             </div>
         </div>
     </div>
-	<div>
-		<p>Marks haven't been entered for the following evaluation methods:</p>
+	<div class=margin>
+		<h5>Marks haven't been entered for the following evaluation methods:</h5>
 		<ul>
 		{% for i in colist %}
 			<li>{{i}}</li>
 		{% endfor %}
 		</ul>
-	</div>
-	<div>
-		<a href = "/dash">Go back to dashboard</a>
+	
+		<a href = "/dash"><button> dashboard</button></a>
 	</div>
 </body>
 </html>
