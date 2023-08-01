@@ -7,7 +7,7 @@
 	<body>
 		<div class=nav>
 			<div class=margin>
-				<h1>*NAME*</h1>
+				<h1>Otocoat</h1>
 				<div class=link>
 					<a href="/index" class=nl>Home</a>
 					<a href="/about" class=nl>About</a>
@@ -36,15 +36,16 @@
 
 			<form method = "post" autocomplete = "off">
 				<div class = "TextBoxdiv">
-					<input type = "text" name = "name" placeholder = "Subject name">
+					<label for = "sub">Subject: </label>
+					<input type = "text" name = "name" placeholder = "Subject name" id = "sub">
 				</div>
 				<div class = "TextBoxdiv">
-					<input list = "classes" name = "classy" placeholder="Class name">
-					<datalist id = "classes">
+					<label for = "classes">Class: </label>
+					<select id = "classes" name = "classy">
 						{% for i in alist %}
-						<option value = "{{i}}">
+						<option value = "{{i}}">{{i}}</option>
 						{% endfor %}
-					</datalist>
+					</select>
 				</div>
 				<button>Submit</button>
 			</form>

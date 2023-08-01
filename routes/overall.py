@@ -34,7 +34,7 @@ def overall():
 				Kindly check the input or go to the subject page.")
 			return render_template("choice.html", subjectlist = arows, \
 				classlist = crows)
-		evallist = ['Assignment 1', 'Assignment 2', 'First internals', 'Second internals', 'Course Feedback', 'Endsem']
+		evallist = ['Assignment 1', 'Assignment 2', 'First internals', 'Second internals', 'Endsem', 'Course Feedback']
 		nolist = []
 		for i in evallist:
 			thecheck = db.session.execute(db.select(Overall).filter_by(\
@@ -42,6 +42,20 @@ def overall():
 			if thecheck is None:
 				nolist.append(i)
 		if nolist != []:
-			return render_template('overall.html', colist = nolist)
+			return render_template('nooverall.html', colist = nolist)
 		else:
-			pass
+			colist = []
+			for i in evallist:
+				thecheck = db.session.execute(db.select(Overall.co1, Overall.co2, Overall.co3, Overall.co4, Overall.co5).filter_by(\
+					theclass = a_class, subject = a_subject, evaluation = i)).first()
+				colist.append(list(thecheck))
+			for i in range(5):
+				for j in range(5):
+					if colist[i][j] == 0:
+						colist[i][j] = 1
+			finallist = []
+			for i in range(5):
+				val = 0.12 * colist[0][i] + 0.12 * colist[1][i] + 0.16 * colist[2][i] + 0.16 * colist[3][i] + 0.24 * colist[4][i] \
+					+ 0.2 * colist[5][i]
+				finallist.append(val)
+			return render_template('overall.html', colist = finallist)
