@@ -44,4 +44,5 @@ def subject():
 		db.session.add(asubject)
 		db.session.commit()
 		flash("Subject added successfully!")
+		arows = db.session.execute(db.select(Subjects.subject, Subjects.theclass)).all()
 		return render_template('subject.html', alist = therows, subjectlist = arows)
