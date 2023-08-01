@@ -1,6 +1,7 @@
-<!DOCTYPE html>
+<html>
 <head>
 	<title>Endsem results</title>
+	<link rel = "stylesheet" type = "text/css" href = "/static/css/style2.css">
 </head>
 <body>
 	<div class=nav>
@@ -14,6 +15,8 @@
             </div>
         </div>
     </div>
+    <div class=margin>
+       <br><br><br>
 	<div>
 		{% for i in range(1, 6) %}
 			{% if colist[i - 1] == 0 %}
@@ -24,6 +27,6 @@
 		{% endfor %}
 	</div>
 	<div>
-		<a href = "/dash">Go back to dashboard</a>
+		<a href = "/dash"><button> dashboard</button></a>
 	</div>
 </body>

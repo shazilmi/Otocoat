@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+
 <html>
 <head>
 	<title>Internals results</title>
-	<link rel = "stylesheet" type = "text/css" href = "/static/css/style.css">
+	<link rel = "stylesheet" type = "text/css" href = "/static/css/style2.css">
 </head>
 <body>
 	<div class=nav>
@@ -16,16 +16,16 @@
             </div>
         </div>
     </div>
-	<div>
-		<p>Scores obtained for each CO were:</p>
+	
+		<div class=margin>
+		<h5>Scores obtained for each CO were:</h5>
 		<ul>
 		{% for i in range(5) %}
 			<li>CO{{i+1}} : {{colist[i]}}</li>
 		{% endfor %}
 		</ul>
-	</div>
-	<div>
-		<a href = "/dash">Go back to dashboard</a>
+	
+		<a href = "/dash"><button> dashboard</button></a>
 	</div>
 </body>
 </html>
