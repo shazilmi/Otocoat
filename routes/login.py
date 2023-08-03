@@ -22,7 +22,6 @@ def login():
 		rows = db.session.execute(db.select(Users.password).filter_by(email = username)).all()
 		if len(rows) == 0:
 			flash("Invalid login credentials!")
-			print("No results returned.")
 			return render_template('login.html')
 		if rows[0][0] == password:
 			auser = Auser()
@@ -36,6 +35,4 @@ def login():
 				session['admin'] = 1
 				return redirect("adash")
 		flash("Invalid login credentials!")
-		print("Wrong password.")
-		print(rows[0][0])
 		return render_template('login.html')
