@@ -12,7 +12,12 @@ homes = Blueprint('index', __name__)
 @homes.route('/index', methods = ["POST", "GET"])
 def home():
 	if request.method == "GET":
-		return render_template("index.html")
+		if session['admin'] is None:
+				return render_template('index.html')
+		elif session['admin'] == 0:
+			return render_template('findex.html')
+		elif session['admin'] == 1:
+			return render_template('aindex.html')
 	if request.method == "POST":
 		if not request.form['user']:
 			flash('Username is mandatory!')
@@ -25,7 +30,6 @@ def home():
 		rows = db.session.execute(db.select(Users.password).filter_by(email = username)).all()
 		if len(rows) == 0:
 			flash("Invalid login credentials!")
-			print("No results returned.")
 			return render_template('index.html')
 		if rows[0][0] == password:
 			auser = Auser()
