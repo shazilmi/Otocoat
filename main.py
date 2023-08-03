@@ -31,6 +31,7 @@ app = Flask(__name__)
 # Configure the database.
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///rajagiri.db"
 
+
 # Initialize the app with the extension.
 db.init_app(app)
 

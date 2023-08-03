@@ -30,12 +30,14 @@
 		<center>
 			<div class=c1>
 				<h5 style=margin:0>MESSAGE US</h5>
-				<input type="text" placeholder="Your Name">
-				<input type="text" placeholder="Your E-mail">
-				<input type="text" placeholder="Subject">
-				<textarea placeholder="Your Message "></textarea>
+				<form method = "POST">
+				<input type="text" placeholder="Your Name" name = "name">
+				<input type="email" placeholder="Your E-mail" name = "email" required>
+				<input type="text" placeholder="Subject" name = "subject">
+				<textarea placeholder="Your Message " name = "content" required></textarea>
 				<br>
-				<a href=""><button>SEND</button></a>
+				<button>SEND</button>
+				</form>
 			</div>
 			<div class=c2>
 				<h5 style=margin:0>CONTACT INFO</h5>
