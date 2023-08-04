@@ -5,9 +5,10 @@ contacts = Blueprint('contact', __name__)
 @contacts.route('/contact', methods = ["POST", "GET"])
 def about():
 	if request.method == "GET":
-		if session['admin'] is None:
+		try:
+			if session['admin'] == 0:
+				return render_template('fcontact.html')
+			else:
+				return render_template('acontact.html')
+		except KeyError:
 			return render_template('contact.html')
-		elif session['admin'] == 0:
-			return render_template('fcontact.html')
-		else:
-			return render_template('acontact.html')

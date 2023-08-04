@@ -12,12 +12,15 @@ homes = Blueprint('index', __name__)
 @homes.route('/index', methods = ["POST", "GET"])
 def home():
 	if request.method == "GET":
-		if session['admin'] is None:
-				return render_template('index.html')
-		elif session['admin'] == 0:
+		print('Something happened.')
+		if session['admin'] == 0:
+			print("ivide ethi")
 			return render_template('findex.html')
 		elif session['admin'] == 1:
+			print("Ivide ethi 3")
 			return render_template('aindex.html')
+		else:
+			return render_template('index.html')
 	if request.method == "POST":
 		if not request.form['user']:
 			flash('Username is mandatory!')
